@@ -7,9 +7,30 @@ import java.net.URL;
 
 public class Add {
 
-    public String enviarMensaje (String nuevapost){
+    String respu = "";
 
-        return "";
+    public String enviarpost (String doublep){
+        try {
+            URL URLEs = new URL("http://localhost:7654"+"/Feed");
+            HttpURLConnection conecionG = (HttpURLConnection) URLEs.openConnection();
+            conecionG.setRequestMethod("POST");
+            if (conecionG.getResponseCode() != 200) {
+                throw new RuntimeException("Fallo");
+            }
+            InputStreamReader in = new InputStreamReader(conecionG.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+            String output;
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+                respu =  output;
+            }
+
+            conecionG.disconnect();
+
+        } catch (Exception e) {
+            System.out.println("Error al conectar");
+        }
+        return respu;
     }
 
 }

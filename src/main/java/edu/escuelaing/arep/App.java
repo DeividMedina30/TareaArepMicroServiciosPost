@@ -12,13 +12,14 @@ public class App
 {
     public static void main( String[] args )
     {
+        Add apir = new Add();
         port(getPort());
         get("/hello", (req, res) -> "Hello post");
 
-        post("/post", (request, response) -> {
+        post("/postT", (req, res) -> {
             System.out.println("entro a postear");
-            response.type("application/json");
-            return (request.queryParams("value"));
+            res.type("application/json");
+            return apir.enviarpost(req.queryParams("value"));
         });
     }
 
@@ -26,7 +27,7 @@ public class App
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 4567; //returns default port if heroku-port isn't set(i.e. on localhost)
+        return 34000; //returns default port if heroku-port isn't set(i.e. on localhost)
     }
 }
 
