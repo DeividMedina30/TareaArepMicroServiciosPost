@@ -1,6 +1,8 @@
 package edu.escuelaing.arep;
 
 
+import com.google.gson.Gson;
+
 import static spark.Spark.*;
 
 
@@ -17,9 +19,10 @@ public class App
         get("/hello", (req, res) -> "Hello post");
 
         post("/postT", (req, res) -> {
+            String commentString = req.body();
             System.out.println("entro a postear");
             res.type("application/json");
-            return apir.enviarpost(req.queryParams("value"));
+            return apir.enviarpost(commentString);
         });
     }
 
