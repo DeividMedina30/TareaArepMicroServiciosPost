@@ -11,7 +11,7 @@ public class Add {
 
     public String enviarpost (String doublep){
         try {
-            URL URLEs = new URL("http://localhost:7654"+"/Feed");
+            URL URLEs = new URL("http://localhost:7654"+"/Feed"+doublep);
             HttpURLConnection conecionG = (HttpURLConnection) URLEs.openConnection();
             conecionG.setRequestMethod("POST");
             if (conecionG.getResponseCode() != 200) {
