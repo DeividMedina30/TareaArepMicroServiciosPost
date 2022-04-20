@@ -11,10 +11,10 @@ public class Add {
 
     public String enviarpost (String usuario, String comentario){
         try {
-            URL URLEs = new URL("http://localhost:7654"+"/Feed?"+"user="+usuario+"%body="+comentario);
+            URL URLEs = new URL("http://localhost:7654"+"/Feed?"+"user="+usuario+"&body="+comentario);
             System.out.println(URLEs);
             HttpURLConnection conecionG = (HttpURLConnection) URLEs.openConnection();
-            conecionG.setRequestMethod("GET");
+            conecionG.setRequestMethod("POST");
             if (conecionG.getResponseCode() != 200) {
                 throw new RuntimeException("Fallo");
             }
