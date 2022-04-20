@@ -18,11 +18,14 @@ public class App
         port(getPort());
         get("/hello", (req, res) -> "Hello post");
 
-        post("/postT", (req, res) -> {
-            String commentString = req.body();
+        get("/postT", (req, res) -> {
+            String UserString = req.queryParams("user");
+            String BodyString = req.queryParams("body");
             System.out.println("entro a postear");
+            System.out.println(UserString);
+            System.out.println(BodyString);
             res.type("application/json");
-            return apir.enviarpost(commentString);
+            return apir.enviarpost(UserString, BodyString);
         });
     }
 

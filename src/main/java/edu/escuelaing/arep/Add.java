@@ -9,11 +9,12 @@ public class Add {
 
     String respu = "";
 
-    public String enviarpost (String doublep){
+    public String enviarpost (String usuario, String comentario){
         try {
-            URL URLEs = new URL("http://localhost:7654"+"/Feed"+doublep);
+            URL URLEs = new URL("http://localhost:7654"+"/Feed?"+"user="+usuario+"%body="+comentario);
+            System.out.println(URLEs);
             HttpURLConnection conecionG = (HttpURLConnection) URLEs.openConnection();
-            conecionG.setRequestMethod("POST");
+            conecionG.setRequestMethod("GET");
             if (conecionG.getResponseCode() != 200) {
                 throw new RuntimeException("Fallo");
             }
@@ -30,6 +31,7 @@ public class Add {
         } catch (Exception e) {
             System.out.println("Error al conectar");
         }
+        System.out.println(respu);
         return respu;
     }
 
